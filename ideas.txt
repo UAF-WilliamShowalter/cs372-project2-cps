@@ -14,12 +14,3 @@ TDD/YAGNI?
 Start with a single shape? Each shape?
 
 Start with a compound shape?
-
-
-
-
-
-Tasks:
-Will: 
-Noah: UML diagram
-Saira: 
