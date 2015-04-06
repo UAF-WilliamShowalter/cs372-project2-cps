@@ -1,1 +1,25 @@
 This is a simple text file for jotting down questions/comments/concerns/ideas for the group.
+
+Design patterns needed?
+Decorator (rotated, compound, etc.)
+Interpreter (generating postscript)
+
+Will made a basic language definition:
+<Compound>	::=	Postscript + { <Compound> | <Basic> }
+<Basic>		::=	Postscript
+
+Do we need more entries for each shape type? Individual entires for scaled, rotated, etc? Ask Hartman about the language to check.
+
+TDD/YAGNI?
+Start with a single shape? Each shape?
+
+Start with a compound shape?
+
+
+
+
+
+Tasks:
+Will: 
+Noah: UML diagram
+Saira: 

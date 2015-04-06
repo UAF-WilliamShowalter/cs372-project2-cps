@@ -7,7 +7,7 @@
 // test.cpp is the test/debug suite
 
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "Catch/single_include/catch.hpp"
 
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
