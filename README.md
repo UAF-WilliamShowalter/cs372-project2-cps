@@ -1,6 +1,8 @@
 # CS 372 Project 2
 # CPS: C++ to PostScript
-Noah Betzen, William Showalter, Saira Walia
+
+Noah Betzen, William Showalter, Saira Walia.
+
 The source code for a C++ to PostScript project for CS372.
 
 `main.cpp` is the release suite.
