@@ -16,4 +16,4 @@ This project will make use of <a href="https://waffle.io/nezteb/cs372-project2-c
 
 This project will have a <a href="https://drive.google.com/folderview?id=0Bx9SJ1Pr_IlKfkFZU0c5dHR6TDhvZzJSWm5NQzJiWkE0ZGtKWXlzMmFybUxEQTFvMUtGOGc&usp=sharing">Google Drive folder</a> for any non-code assets. Anyone with the link can view; only the collaborators of this project can edit.
 
-The test/debug suite code makes use of <a href="https://github.com/philsquared/Catch">`catch.hpp`</a>, a C++ single-include unit-testing framework.
+The test/debug suite code makes use of `<a href="https://github.com/philsquared/Catch">catch.hpp</a>`, a C++ single-include unit-testing framework.
