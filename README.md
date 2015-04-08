@@ -1,9 +1,9 @@
 # CS 372 Project 2
 # CPS: C++ to PostScript
 
-[![Pending](https://badge.waffle.io/Nezteb/cs372-project2-cps.svg?label=pending&title=Pending)](http://waffle.io/Nezteb/cs372-project2-cps)
-[![Ongoing](https://badge.waffle.io/Nezteb/cs372-project2-cps.svg?label=ongoing&title=Ongoing)](http://waffle.io/Nezteb/cs372-project2-cps)
-[![Critical](https://badge.waffle.io/Nezteb/cs372-project2-cps.svg?label=critical&title=Critical)](http://waffle.io/Nezteb/cs372-project2-cps)
+[![Pending](https://badge.waffle.io/Nezteb/cs372-project2-cps.svg?label=pending\/in-queue&title=Pending)](http://waffle.io/Nezteb/cs372-project2-cps)
+[![Ongoing](https://badge.waffle.io/Nezteb/cs372-project2-cps.svg?label=ongoing\/normal&title=Ongoing)](http://waffle.io/Nezteb/cs372-project2-cps)
+[![Critical](https://badge.waffle.io/Nezteb/cs372-project2-cps.svg?label=ongoing\/critical&title=Critical)](http://waffle.io/Nezteb/cs372-project2-cps)
 
 Collaborators: Noah Betzen, William Showalter, Saira Walia.
 
