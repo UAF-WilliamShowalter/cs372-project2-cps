@@ -9,6 +9,17 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch.hpp"
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
+#include "classes/Shape.h" // Shape has includes from <memory> and <string>
+#include "classes/CompoundShape.h"
+#include "classes/Polygon.h"
+#include "classes/Rectangle.h"
+#include "classes/Circle.h"
+#include "classes/ShapeDecorator.h"
+
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
     REQUIRE(0==0);
