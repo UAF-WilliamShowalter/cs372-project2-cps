@@ -24,6 +24,15 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
 	Circle c;
 	Rectangle r;
-	Polygon(5,7);
+	Polygon p(5,72);
+	stringstream ps = p.getPostScript();
+
+	// Console output test
+	cout << "144 144 translate\n";
+	std::string temp;
+	while (std::getline(ps,temp)){
+		cout << temp << endl;
+	}
+	cout << "showpage\n";
     REQUIRE(0==0);
 }
