@@ -12,9 +12,10 @@ class CompoundShape : public Shape
 {
 private:
 	
-
 public:
-	
+	BoundingBox getBoundingBox() { return BoundingBox(); }
+	//Coordinate getCoordinate() { return Coordinate(); }
+	stringstream getPostScript() { return stringstream(); }
 };
 
 #endif

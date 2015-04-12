@@ -42,7 +42,7 @@ private:
 public:
 	virtual ~Shape() = default;
 	virtual BoundingBox getBoundingBox() = 0;
-	virtual Coordinate getCoordinate() = 0;
+	//virtual Coordinate getCoordinate() = 0;
 	virtual stringstream getPostScript() = 0;
 };
 

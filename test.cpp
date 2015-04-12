@@ -22,5 +22,8 @@ using std::endl;
 
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
+	Circle c;
+	Rectangle r;
+	Polygon(5,7);
     REQUIRE(0==0);
 }

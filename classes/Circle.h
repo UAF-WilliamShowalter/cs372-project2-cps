@@ -16,7 +16,9 @@ private:
 	stringstream _postScriptCode;
 
 public:
-	
+	BoundingBox getBoundingBox() { return BoundingBox(); }
+	//Coordinate getCoordinate() { return Coordinate(); }
+	stringstream getPostScript() { return stringstream(); }
 };
 
 #endif
