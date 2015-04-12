@@ -6,12 +6,14 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
+#include <sstream>
+using std::stringstream;
 #include "Shape.h"
 
 class Circle : public Shape
 {
 private:
-	
+	stringstream _postScriptCode;
 
 public:
 	

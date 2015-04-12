@@ -6,8 +6,12 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#define pi 3.14159265358979323846
+
 #include <string>
 using std::string;
+#include <sstream>
+using std::stringstream;
 #include <memory>
 using std::unique_ptr;
 using std::make_unique;
@@ -29,6 +33,7 @@ class Shape
 private:
 	BoundingBox _boundingBox;
 	Coordinate _currentCoordinate;
+	stringstream _postScriptCode;
 
 public:
 	virtual ~Shape() = default;
