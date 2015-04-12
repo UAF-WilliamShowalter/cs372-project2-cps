@@ -6,7 +6,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#define pi 3.14159265358979323846
+#define PI 3.14159265358979323846
 
 #include <string>
 using std::string;
