@@ -33,7 +33,7 @@ stringstream Polygon::getPostScript() {
 	// save point
 	ps << "gsave newpath 0 0 moveto \n";
 	// Setup starting point of shape -- relative
-	ps << (int)(-_boundingBox.width/2) << " " << (int)(-_boundingBox.height) 
+	ps << (int)(-_boundingBox.width/2) << " " << (int)(-_boundingBox.height / 2)
 			<< " rmoveto\n";
 	// setup loop of drawing -- angles
 	ps << "0 " << (int)(360/_numSides) << " 360 { \n";
