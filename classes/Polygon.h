@@ -11,7 +11,10 @@
 class Polygon : public Shape
 {
 private:
-	
+	void setHeightWidth(double numSides, double sideLength);
+	BoundingBox _boundingBox;
+	Coordinate _currentCoordinate;
+	stringstream _postScriptCode;
 
 public:
 	virtual ~Polygon() = default;
