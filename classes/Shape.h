@@ -19,24 +19,31 @@ using std::move;
 
 struct Coordinate
 {
-	int x, y; // Coordinates will always start at the bottom left
+	// TODO: Coordinates as floats/doubles?
+	int x, y;
 };
 
 struct BoundingBox
 {
-	Coordinate coordinate;
-	int width, height;
+	Coordinate coordinate; // Start in the middle of the bounding box.
+	double width, height;
 };
 
 class Shape
 {
 private:
-	BoundingBox _boundingBox;
-	Coordinate _currentCoordinate;
-	stringstream _postScriptCode;
+	// TODO: Might be a better way to do this than copy-paste in every derived class.
+	// Protected? Friend? Dumb getters/setters that have no security?
+
+	//BoundingBox _boundingBox;
+	//Coordinate _currentCoordinate;
+	//stringstream _postScriptCode;
 
 public:
 	virtual ~Shape() = default;
+	virtual BoundingBox getBoundingBox() = 0;
+	virtual Coordinate getCoordinate() = 0;
+	virtual stringstream getPostScript() = 0;
 };
 
 #endif
