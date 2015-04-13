@@ -11,21 +11,23 @@
 class Polygon : public Shape
 {
 public:
-	Polygon(double numSides, double sideLength):_numSides(numSides),_sideLength(sideLength){
-		setHeightWidth (numSides, sideLength);
+	Polygon(double numSides, double sideLength):_numSides(numSides),_sideLength(sideLength)
+	{
+		setHeightWidth(numSides, sideLength);
 	}
 	virtual ~Polygon() = default; // Triangle and Square derived
 	BoundingBox getBoundingBox() { return BoundingBox(); }
 	Coordinate getCoordinate() { return Coordinate(); }
 	stringstream getPostScript();
 
-	private:
+private:
+	double _numSides;
+	double _sideLength;
 	void setHeightWidth(double numSides, double sideLength);
 	BoundingBox _boundingBox;
 	//Coordinate _currentCoordinate;
 	stringstream _postScriptCode;
-	double _numSides;
-	double _sideLength;
+	
 };
 
 #endif

@@ -10,13 +10,20 @@
 
 class Rectangle : public Shape
 {
-private:
-	
-
 public:
+	Rectangle(double width, double height)
+	{
+		_boundingBox._width=width;
+		_boundingBox._height=height;
+	}
 	BoundingBox getBoundingBox() { return BoundingBox(); }
-	//Coordinate getCoordinate() { return Coordinate(); }
-	stringstream getPostScript() { return stringstream(); }
+	Coordinate getCoordinate() { return Coordinate(); }
+	stringstream getPostScript();
+
+private:
+	stringstream _postScriptCode;
+	BoundingBox _boundingBox;
+	//Coordinate _currentCoordinate;
 };
 
 #endif

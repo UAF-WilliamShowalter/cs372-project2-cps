@@ -20,13 +20,17 @@ using std::move;
 struct Coordinate
 {
 	// TODO: Coordinates as floats/doubles?
-	int x, y;
+	int _x, _y;
+
+	//Coordinate(int x, int y):_x(x),_y(y){}
 };
 
 struct BoundingBox
 {
 	Coordinate coordinate; // Start in the middle of the bounding box.
-	double width, height;
+	double _width, _height;
+
+	//BoundingBox(double width, double height):_width(width),_height(height){}
 };
 
 class Shape

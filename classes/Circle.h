@@ -12,13 +12,20 @@ using std::stringstream;
 
 class Circle : public Shape
 {
+public:
+	Circle(double radius)
+	{
+		_boundingBox._width=radius;
+		_boundingBox._height=radius;
+	}
+	BoundingBox getBoundingBox() { return BoundingBox(); }
+	Coordinate getCoordinate() { return Coordinate(); }
+	stringstream getPostScript();
+
 private:
 	stringstream _postScriptCode;
-
-public:
-	BoundingBox getBoundingBox() { return BoundingBox(); }
-	//Coordinate getCoordinate() { return Coordinate(); }
-	stringstream getPostScript() { return stringstream(); }
+	BoundingBox _boundingBox;
+	//Coordinate _currentCoordinate;
 };
 
 #endif
