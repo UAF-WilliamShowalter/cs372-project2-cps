@@ -22,6 +22,26 @@ using std::ofstream;
 #include "classes/Circle.h"
 #include "classes/ShapeDecorator.h"
 
+/*
+void writePostScriptToFile(Shape *shape, string fileName)
+{
+	// file output test: polygon
+	stringstream shapePostScript = shape.getPostScript();
+
+	ofstream outputFile;
+	outputFile.open(fileName);
+	outputFile << "%!\n";
+	outputFile << "288 288 translate\n";
+	string temp;
+	while (std::getline(polygonPostScript,temp))
+	{
+		outputFile << temp << "\n";
+	}
+	outputFile << "showpage\n";
+	outputFile.close();
+}
+*/
+
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
 	Polygon polygon1(9, 72); // 9 sides, each side is 72 in length
