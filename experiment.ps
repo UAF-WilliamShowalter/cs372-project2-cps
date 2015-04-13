@@ -1,7 +1,30 @@
 %!
 288 288 translate
+gsave newpath 0 0 moveto
+-103 -102 rmoveto
+0 40 360 {
+/angle exch def
+angle rotate 72 0  rlineto
+360 angle sub rotate
+} for stroke
+grestore
+showpage
+%!
+288 288 translate
 0 0 moveto gsave newpath
 0 0 72 0 360 arc
+closepath
+stroke
+grestore
+showpage
+%!
+288 288 translate
+gsave newpath 0 0 moveto
+-36 -72 rmoveto
+0 72 rlineto
+144 0 rlineto
+0 -72 rlineto
+-144 0 rlineto
 closepath
 stroke
 grestore

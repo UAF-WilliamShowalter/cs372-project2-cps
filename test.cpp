@@ -9,9 +9,11 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch.hpp"
 
-#include <iostream>
-using std::cout;
-using std::endl;
+#include <string>
+using std::string;
+
+#include <sstream>
+using std::ofstream;
 
 #include "classes/Shape.h" // Shape has includes from <memory> and <string>
 #include "classes/CompoundShape.h"
@@ -30,13 +32,40 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	stringstream rectanglePostScript = rectangle1.getPostScript();
 	stringstream circlePostScript = circle1.getPostScript();
 
-	// console output test
-	cout << "%!\n";
-	cout << "288 288 translate\n";
-	std::string temp;
-	while (std::getline(circlePostScript,temp)){
-		cout << temp << endl;
+	// file output test: polygon
+	ofstream outputFile;
+	outputFile.open("experiment.ps");
+	outputFile << "%!\n";
+	outputFile << "288 288 translate\n";
+	string temp;
+	while (std::getline(polygonPostScript,temp))
+	{
+		outputFile << temp << "\n";
 	}
-	cout << "showpage\n";
+	outputFile << "showpage\n";
+	outputFile.close();
+
+	// file output test: circle
+	outputFile.open("experiment.ps", std::ios_base::app);
+	outputFile << "%!\n";
+	outputFile << "288 288 translate\n";
+	while (std::getline(circlePostScript,temp))
+	{
+		outputFile << temp << "\n";
+	}
+	outputFile << "showpage\n";
+	outputFile.close();
+
+	// file output test: rectangle
+	outputFile.open("experiment.ps", std::ios_base::app);
+	outputFile << "%!\n";
+	outputFile << "288 288 translate\n";
+	while (std::getline(rectanglePostScript,temp))
+	{
+		outputFile << temp << "\n";
+	}
+	outputFile << "showpage\n";
+	outputFile.close();
+
     REQUIRE(0==0);
 }
