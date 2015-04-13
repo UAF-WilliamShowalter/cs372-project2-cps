@@ -14,3 +14,15 @@ TDD/YAGNI?
 Start with a single shape? Each shape?
 
 Start with a compound shape?
+
+
+
+
+Questions to ask Hartman:
+TODO: Might be a better way to do this than copy-paste in every derived class.
+Protected? Friend? Dumb getters/setters that have no security?
+
+BoundingBox _boundingBox;
+Coordinate _currentCoordinate; // do we need current coordinate? how are shapes drawn at specific coordinates?
+stringstream _postScriptCode;
+
