@@ -27,3 +27,6 @@ Coordinate _currentCoordinate; // do we need current coordinate? how are shapes 
 stringstream _postScriptCode;
 
 We need test.cpp and main.cpp to write to some postscript file instead of copy-pasting it into another file to test.
+
+Remove any `using` keywords and only use the `std::` part
+
