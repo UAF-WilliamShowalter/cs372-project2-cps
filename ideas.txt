@@ -10,23 +10,16 @@ Will made a basic language definition:
 
 Do we need more entries for each shape type? Individual entires for scaled, rotated, etc? Ask Hartman about the language to check.
 
-TDD/YAGNI?
-Start with a single shape? Each shape?
-
-Start with a compound shape?
 
 
 
 
-Questions to ask Hartman:
-TODO: Might be a better way to do this than copy-paste in every derived class.
-Protected? Friend? Dumb getters/setters that have no security?
 
-BoundingBox _boundingBox;
-Coordinate _currentCoordinate; // do we need current coordinate? how are shapes drawn at specific coordinates?
-stringstream _postScriptCode;
 
-We need test.cpp and main.cpp to write to some postscript file instead of copy-pasting it into another file to test.
 
-Remove any `using` keywords and only use the `std::` part
+
+
+
+Still need spacers, the two compound shapes, and figure out how main will call our stuff.
+
 

@@ -10,11 +10,11 @@
 
 class ShapeDecorator
 {
-private:
-	unique_ptr<Shape> _theShape;
-
 public:
 	
+
+private:
+	std::unique_ptr<Shape> _theShape;
 };
 
 #endif

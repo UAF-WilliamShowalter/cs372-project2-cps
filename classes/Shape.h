@@ -8,46 +8,48 @@
 
 #define PI 3.14159265358979323846
 
-#include <string>
-using std::string;
-#include <sstream>
-using std::stringstream;
-#include <memory>
-using std::unique_ptr;
-using std::make_unique;
-using std::move;
+#include <string> // for `string`
+#include <sstream> // for `stringstream`
+#include <memory> // for `unique_ptr`, `make_unique`, `move`
 
 struct Coordinate
 {
-	// TODO: Coordinates as floats/doubles?
+	Coordinate():_x(0),_y(0){}
+	Coordinate(int x, int y):_x(x),_y(y){}
+	
 	int _x, _y;
-
-	//Coordinate(int x, int y):_x(x),_y(y){}
 };
+
+const Coordinate MIDDLEOFPAGE((int)(8.5*0.5*70),(int)(11*0.5*70)); // middle of an 8.5 inch by 11 inch paper
 
 struct BoundingBox
 {
-	Coordinate coordinate; // Start in the middle of the bounding box.
-	double _width, _height;
-
-	//BoundingBox(double width, double height):_width(width),_height(height){}
+	BoundingBox():_center(MIDDLEOFPAGE),_width(0),_height(0){}
+	BoundingBox(double width, double height):_center(MIDDLEOFPAGE),_width(width),_height(height){}
+	
+	Coordinate _center; // this is where shapes start its drawing
+	double _width = 0;
+	double _height = 0;
 };
 
 class Shape
 {
-private:
-	// TODO: Might be a better way to do this than copy-paste in every derived class.
-	// Protected? Friend? Dumb getters/setters that have no security?
-
-	//BoundingBox _boundingBox;
-	//Coordinate _currentCoordinate;
-	//stringstream _postScriptCode;
-
 public:
+	Shape();
 	virtual ~Shape() = default;
-	virtual BoundingBox getBoundingBox() = 0;
-	//virtual Coordinate getCoordinate() = 0;
-	virtual stringstream getPostScript() = 0;
+	
+	BoundingBox getBoundingBox();
+	std::string getPostScript();
+
+	void setBoundingBox(BoundingBox boundingBox);
+	void setPostScript(std::stringstream postScriptCode);
+
+	virtual BoundingBox calculateBoundingBox();
+	virtual std::stringstream appendPostScript();
+
+private:
+	BoundingBox _boundingBox;
+	std::stringstream _postScriptCode;
 };
 
 #endif

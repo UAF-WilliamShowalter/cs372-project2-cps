@@ -4,12 +4,18 @@
 // Polygon.cpp
 
 #include "Polygon.h"
-#include <cmath>
 
+#include <cmath>
 using std::sin;
 using std::cos;
 
-void Polygon::setHeightWidth(double numSides, double sideLength)
+Polygon::Polygon(double numSides, double sideLength):_numSides(numSides),_sideLength(sideLength)
+{
+	setBoundingBox(calculateBoundingBox(numSides,sideLength));
+	setPostScript(appendPostScript());
+}
+
+BoundingBox Polygon::calculateBoundingBox(double numSides, double sideLength)
 {
 	double x = 0, y = 0, xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 
@@ -24,24 +30,24 @@ void Polygon::setHeightWidth(double numSides, double sideLength)
 		if (y > yMax)
 			yMax = y;
 		if (y < yMin)
-			yMin = y;	
+			yMin = y;
 	}
 
-	_boundingBox._width = xMax-xMin;
-	_boundingBox._height = yMax-yMin;
+	return BoundingBox(xMax-xMin,yMax-yMin);
 }
 
-stringstream Polygon::getPostScript()
+std::stringstream Polygon::appendPostScript()
 {
-	stringstream ps;
+	std::stringstream ps(getPostScript()); // put the old postscript code in first
+
+	ps << "% BEGIN POLYGON\n";
 
 	// save point
-	ps << "gsave newpath 0 0 moveto\n";
+	ps << "gsave\n";
+	ps << "newpath\n";
+	ps << "0 0 moveto\n";
 
-	// Setup starting point of shape -- relative
-	ps << (int)(-_boundingBox._width/2) << " " << (int)(-_boundingBox._height / 2) << " rmoveto\n";
-	
-	// setup loop of drawing -- angles
+	// setup loop of drawing (angles)
 	ps << "0 " << (int)(360/_numSides) << " 360 {\n";
 	
 	// setup variables
@@ -58,6 +64,8 @@ stringstream Polygon::getPostScript()
 
 	// restore point
 	ps << "grestore\n";
+
+	ps << "% END POLYGON\n\n";
 
 	return ps;
 }

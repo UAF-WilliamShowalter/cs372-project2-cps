@@ -1,25 +1,48 @@
 %!
-288 288 translate
-gsave newpath 0 0 moveto
--103 -102 rmoveto
+% BEGIN SHAPE
+297 385 translate
+% END SHAPE
+
+% BEGIN POLYGON
+gsave
+newpath
+0 0 moveto
 0 40 360 {
 /angle exch def
 angle rotate 72 0  rlineto
 360 angle sub rotate
 } for stroke
 grestore
+% END POLYGON
+
 showpage
+
 %!
-288 288 translate
-0 0 moveto gsave newpath
+% BEGIN SHAPE
+297 385 translate
+% END SHAPE
+
+% BEGIN CIRCLE
+gsave
+0 0 moveto
+newpath
 0 0 72 0 360 arc
 closepath
 stroke
 grestore
+% END CIRCLE
+
 showpage
+
 %!
-288 288 translate
-gsave newpath 0 0 moveto
+% BEGIN SHAPE
+297 385 translate
+% END SHAPE
+
+% BEGIN RECTANGLE
+gsave
+newpath
+0 0 moveto
 -36 -72 rmoveto
 0 72 rlineto
 144 0 rlineto
@@ -28,4 +51,7 @@ gsave newpath 0 0 moveto
 closepath
 stroke
 grestore
+% BEGIN RECTANGLE
+
 showpage
+

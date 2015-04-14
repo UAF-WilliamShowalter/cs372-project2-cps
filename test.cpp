@@ -9,38 +9,41 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch.hpp"
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 #include <string>
 using std::string;
 
 #include <sstream>
+using std::stringstream;
+using std::ifstream;
 using std::ofstream;
 
-#include "classes/Shape.h" // Shape has includes from <memory> and <string>
+#include <cstdio>
+using std::remove;
+
+#include "classes/Shape.h"
 #include "classes/CompoundShape.h"
 #include "classes/Polygon.h"
 #include "classes/Rectangle.h"
 #include "classes/Circle.h"
 #include "classes/ShapeDecorator.h"
 
-/*
 void writePostScriptToFile(Shape *shape, string fileName)
 {
-	// file output test: polygon
-	stringstream shapePostScript = shape.getPostScript();
+	stringstream shapePostScript(shape->getPostScript());
 
-	ofstream outputFile;
-	outputFile.open(fileName);
-	outputFile << "%!\n";
-	outputFile << "288 288 translate\n";
+	ofstream outputFile(fileName, std::ios_base::app);
 	string temp;
-	while (std::getline(polygonPostScript,temp))
+	while (std::getline(shapePostScript,temp))
 	{
 		outputFile << temp << "\n";
 	}
-	outputFile << "showpage\n";
+	outputFile << "showpage\n\n";
 	outputFile.close();
 }
-*/
 
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
@@ -48,44 +51,19 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	Circle circle1(72); // radius is 72
 	Rectangle rectangle1(72, 144); // width 72, height 144
 
-	stringstream polygonPostScript = polygon1.getPostScript();
-	stringstream rectanglePostScript = rectangle1.getPostScript();
-	stringstream circlePostScript = circle1.getPostScript();
+	Shape *polygon1_ptr = &polygon1;
+	Shape *circle1_ptr = &circle1;
+	Shape *rectangle1_ptr = &rectangle1;
 
-	// file output test: polygon
-	ofstream outputFile;
-	outputFile.open("experiment.ps");
-	outputFile << "%!\n";
-	outputFile << "288 288 translate\n";
-	string temp;
-	while (std::getline(polygonPostScript,temp))
+	string fileName = "experiment.ps";
+	if(ifstream(fileName)) // if the file exists
 	{
-		outputFile << temp << "\n";
+		remove("experiment.ps"); // delete it
 	}
-	outputFile << "showpage\n";
-	outputFile.close();
 
-	// file output test: circle
-	outputFile.open("experiment.ps", std::ios_base::app);
-	outputFile << "%!\n";
-	outputFile << "288 288 translate\n";
-	while (std::getline(circlePostScript,temp))
-	{
-		outputFile << temp << "\n";
-	}
-	outputFile << "showpage\n";
-	outputFile.close();
+	writePostScriptToFile(polygon1_ptr, fileName);
+	writePostScriptToFile(circle1_ptr, fileName);
+	writePostScriptToFile(rectangle1_ptr, fileName);
 
-	// file output test: rectangle
-	outputFile.open("experiment.ps", std::ios_base::app);
-	outputFile << "%!\n";
-	outputFile << "288 288 translate\n";
-	while (std::getline(rectanglePostScript,temp))
-	{
-		outputFile << temp << "\n";
-	}
-	outputFile << "showpage\n";
-	outputFile.close();
-
-    REQUIRE(0==0);
+	REQUIRE(0==0);
 }

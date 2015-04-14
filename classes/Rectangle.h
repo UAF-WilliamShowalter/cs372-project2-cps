@@ -11,19 +11,13 @@
 class Rectangle : public Shape
 {
 public:
-	Rectangle(double width, double height)
-	{
-		_boundingBox._width=width;
-		_boundingBox._height=height;
-	}
-	BoundingBox getBoundingBox() { return BoundingBox(); }
-	Coordinate getCoordinate() { return Coordinate(); }
-	stringstream getPostScript();
+	Rectangle(double width, double height);
+
+	BoundingBox calculateBoundingBox();
+	std::stringstream appendPostScript();
 
 private:
-	stringstream _postScriptCode;
-	BoundingBox _boundingBox;
-	//Coordinate _currentCoordinate;
+	double _width, _height;
 };
 
 #endif

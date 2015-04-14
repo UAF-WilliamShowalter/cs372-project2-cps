@@ -5,20 +5,38 @@
 
 #include "Circle.h"
 
-stringstream Circle::getPostScript()
+Circle::Circle(double radius):_radius(radius)
 {
-	stringstream ps;
-	
+	setBoundingBox(calculateBoundingBox());
+	setPostScript(appendPostScript());
+}
+
+BoundingBox Circle::calculateBoundingBox()
+{
+	return BoundingBox(_radius,_radius);
+}
+
+std::stringstream Circle::appendPostScript()
+{
+	std::stringstream ps(getPostScript()); // put the old postscript code in first
+
+	ps << "% BEGIN CIRCLE\n";
+
 	// save point
-	ps << "0 0 moveto gsave newpath\n";
+	ps << "gsave\n";
+	ps << "0 0 moveto\n";
+	ps << "newpath\n";
 	
 	// draw circle
-	ps << "0 0 " << (int)(_boundingBox._width) << " 0 360 arc\n";
+	ps << "0 0 " << (int)(getBoundingBox()._width) << " 0 360 arc\n";
 	ps << "closepath\n";
 	ps << "stroke\n";
 
 	// restore point
 	ps << "grestore\n";
 
+	ps << "% END CIRCLE\n\n";
+
 	return ps;
 }
+

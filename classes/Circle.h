@@ -6,26 +6,18 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
-#include <sstream>
-using std::stringstream;
 #include "Shape.h"
 
 class Circle : public Shape
 {
 public:
-	Circle(double radius)
-	{
-		_boundingBox._width=radius;
-		_boundingBox._height=radius;
-	}
-	BoundingBox getBoundingBox() { return BoundingBox(); }
-	Coordinate getCoordinate() { return Coordinate(); }
-	stringstream getPostScript();
+	Circle(double radius);
+
+	BoundingBox calculateBoundingBox();
+	std::stringstream appendPostScript();
 
 private:
-	stringstream _postScriptCode;
-	BoundingBox _boundingBox;
-	//Coordinate _currentCoordinate;
+	double _radius;
 };
 
 #endif

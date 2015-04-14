@@ -5,26 +5,44 @@
 
 #include "Rectangle.h"
 
-stringstream Rectangle::getPostScript()
+Rectangle::Rectangle(double width, double height):_width(width),_height(height)
 {
-	stringstream ps;
-	
+	setBoundingBox(calculateBoundingBox());
+	setPostScript(appendPostScript());
+}
+
+BoundingBox Rectangle::calculateBoundingBox()
+{
+	return BoundingBox(_width,_height);
+}
+
+std::stringstream Rectangle::appendPostScript()
+{
+	std::stringstream ps(getPostScript()); // put the old postscript code in first
+
+	ps << "% BEGIN RECTANGLE\n";
+
 	// save point
-	ps << "gsave newpath 0 0 moveto\n";
+	ps << "gsave\n";
+	ps << "newpath\n";
+	ps << "0 0 moveto\n";
 	
 	// setup starting point of shape (relative)
-	ps << (int)(-_boundingBox._width/2) << " " << (int)(-_boundingBox._height/2) << " rmoveto\n";
+	ps << (int)(-getBoundingBox()._width/2) << " " << (int)(-getBoundingBox()._height/2) << " rmoveto\n";
 	
 	// draw rectangle
-	ps << "0 " << (int)(_boundingBox._width) << " rlineto\n";
-	ps << (int)(_boundingBox._height) << " 0 rlineto\n";
-	ps << "0 " << (int)(-_boundingBox._width) << " rlineto\n";
-	ps << (int)(-_boundingBox._height) << " 0 rlineto\n";
+	ps << "0 " << (int)(getBoundingBox()._width) << " rlineto\n";
+	ps << (int)(getBoundingBox()._height) << " 0 rlineto\n";
+	ps << "0 " << (int)(-getBoundingBox()._width) << " rlineto\n";
+	ps << (int)(-getBoundingBox()._height) << " 0 rlineto\n";
 	ps << "closepath\n";
 	ps << "stroke\n";
 
 	// restore point
 	ps << "grestore\n";
 
+	ps << "% BEGIN RECTANGLE\n\n";
+
 	return ps;
 }
+

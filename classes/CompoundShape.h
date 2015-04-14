@@ -15,7 +15,7 @@ private:
 public:
 	BoundingBox getBoundingBox() { return BoundingBox(); }
 	//Coordinate getCoordinate() { return Coordinate(); }
-	stringstream getPostScript() { return stringstream(); }
+	std::stringstream getPostScript() { return std::stringstream(); }
 };
 
 #endif
