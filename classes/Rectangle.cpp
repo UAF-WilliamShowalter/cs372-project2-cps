@@ -18,9 +18,9 @@ BoundingBox Rectangle::calculateBoundingBox()
 	return BoundingBox(_width,_height);
 }
 
-std::stringstream Rectangle::calculatePostScript()
+std::string Rectangle::calculatePostScript()
 {
-	std::stringstream ps(getPostScript()); // put the old postscript code in first
+	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
 
 	ps << "% BEGIN RECTANGLE\n";
 
@@ -48,6 +48,6 @@ std::stringstream Rectangle::calculatePostScript()
 
 	ps << "% END RECTANGLE\n\n";
 
-	return ps;
+	return ps.str();
 }
 

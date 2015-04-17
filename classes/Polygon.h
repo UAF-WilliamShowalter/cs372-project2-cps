@@ -15,7 +15,7 @@ public:
 	virtual ~Polygon() = default; // triangle and square are derived from polygon
 	
 	virtual BoundingBox calculateBoundingBox();
-	virtual std::stringstream calculatePostScript();
+	virtual std::string calculatePostScript();
 private:
 	int _numSides;
 	double _sideLength;

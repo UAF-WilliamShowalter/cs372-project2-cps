@@ -41,18 +41,18 @@ public:
 	std::string getPostScript();
 
 	void setBoundingBox(BoundingBox boundingBox);
-	void setPostScript(std::stringstream postScriptCode);
+	void setPostScript(std::string postScriptCode);
 
 	// these are used by derived classes
 	virtual BoundingBox calculateBoundingBox() = 0;
-	virtual std::stringstream calculatePostScript() = 0;
+	virtual std::string calculatePostScript() = 0;
 
-	std::stringstream getBoundingCenterPostScript();
-	std::stringstream getDrawBoundingBoxPostScript();
+	std::string getBoundingCenterPostScript();
+	std::string getDrawBoundingBoxPostScript();
 
 private:
 	BoundingBox _boundingBox;
-	std::stringstream _postScriptCode;
+	std::string _postScriptCode;
 };
 
 #endif

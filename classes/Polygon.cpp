@@ -48,9 +48,9 @@ BoundingBox Polygon::calculateBoundingBox()
 	// TODO: Drawing the bounding box gives different results than this...
 }
 
-std::stringstream Polygon::calculatePostScript()
+std::string Polygon::calculatePostScript()
 {
-	std::stringstream ps(getPostScript()); // put the old postscript code in first
+	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
 
 	ps << "% BEGIN POLYGON\n";
 
@@ -81,6 +81,6 @@ std::stringstream Polygon::calculatePostScript()
 
 	ps << "% END POLYGON\n\n";
 
-	return ps;
+	return ps.str();
 }
 

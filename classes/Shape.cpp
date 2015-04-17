@@ -20,7 +20,7 @@ BoundingBox Shape::getBoundingBox()
 
 std::string Shape::getPostScript()
 {
-	return _postScriptCode.str(); // stringstreams are not returnable
+	return _postScriptCode;
 }
 
 void Shape::setBoundingBox(BoundingBox boundingBox)
@@ -28,9 +28,9 @@ void Shape::setBoundingBox(BoundingBox boundingBox)
 	_boundingBox = boundingBox;
 }
 
-void Shape::setPostScript(std::stringstream postScriptCode)
+void Shape::setPostScript(std::string postScriptCode)
 {
-	_postScriptCode << postScriptCode.str(); // stringstreams aren't copyable
+	_postScriptCode += postScriptCode; // stringstreams aren't copyable
 }
 
 /*
@@ -56,16 +56,16 @@ std::stringstream Shape::calculatePostScript()
 }
 */
 
-std::stringstream Shape::getBoundingCenterPostScript()
+std::string Shape::getBoundingCenterPostScript()
 {
 	std::stringstream ps;
 	ps << getBoundingBox()._center._x << " " << getBoundingBox()._center._y << " translate\n";
-	return ps;
+	return ps.str();
 }
 
-std::stringstream Shape::getDrawBoundingBoxPostScript()
+std::string Shape::getDrawBoundingBoxPostScript()
 {
-	std::stringstream ps; // put the old postscript code in first
+	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
 
 	ps << "% BEGIN BOUNDINGBOX\n";
 
@@ -89,7 +89,7 @@ std::stringstream Shape::getDrawBoundingBoxPostScript()
 
 	ps << "% END BOUNDINGBOX\n\n";
 
-	return ps;
+	return ps.str();
 }
 
 

@@ -18,9 +18,9 @@ BoundingBox Circle::calculateBoundingBox()
 	return BoundingBox(_radius,_radius);
 }
 
-std::stringstream Circle::calculatePostScript()
+std::string Circle::calculatePostScript()
 {
-	std::stringstream ps(getPostScript()); // put the old postscript code in first
+	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
 
 	ps << "% BEGIN CIRCLE\n";
 
@@ -39,6 +39,6 @@ std::stringstream Circle::calculatePostScript()
 
 	ps << "% END CIRCLE\n\n";
 
-	return ps;
+	return ps.str();
 }
 
