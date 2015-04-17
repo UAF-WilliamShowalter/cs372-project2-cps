@@ -17,15 +17,36 @@ std::string Horizontal::getBetweenShapePostScript(BoundingBox currentBoundingBox
 	return ps.str();
 }
 
-BoundingBox Horizontal::getCompoundBoundingBox(std::vector<BoundingBox> boxes) {
+BoundingBox Horizontal::getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> & shapes) {
 
 	double maxHeight = 0, sumWidth = 0;
 
-	for (auto box : boxes) {
-		sumWidth += box._width;
-		if (maxHeight < box._height)
-			maxHeight = box._height;
-	}
+	for (auto shape : shapes) {
 
-	return BoundingBox(sumWidth, maxHeight);
+		sumWidth += shape->getBoundingBox()._width;
+		if (maxHeight < shape->getBoundingBox()._height)
+			maxHeight = shape->getBoundingBox()._height;
+	}	
+
+	auto newCenterX = getBoundingBox()._center._x - sumWidth/2;
+	auto newCenterY = getBoundingBox()._center._y;
+
+/*  THIS DIDN"T DO ANYTHING ON ANY OF THEM IDK WHATS HAPPENING
+	auto shapeFirst = shapes[0]; 
+	shapeFirst->setCenter(Coordinate(newCenterX - sumWidth + shapeFirst->getBoundingBox()._width/2,newCenterY));
+
+	auto previousShape = shapeFirst;
+
+	for (auto shape : shapes) {
+		if (shape != shapes[0]) {
+			auto currentX = shape->getBoundingBox()._center._x;
+			auto currentY = shape->getBoundingBox()._center._y;
+			auto newX = currentX + previousShape->getBoundingBox()._width/2 
+							+ shape->getBoundingBox()._width/2;
+			shape->setCenter(Coordinate(newX,currentY));
+		}
+		previousShape = shape;
+	}
+*/
+	return BoundingBox(sumWidth, maxHeight, Coordinate(newCenterX, newCenterY));
 }

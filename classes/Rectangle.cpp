@@ -36,10 +36,10 @@ std::string Rectangle::calculatePostScript()
 	ps << (int)(-getBoundingBox()._width/2) << " " << (int)(-getBoundingBox()._height/2) << " rmoveto\n";
 	
 	// draw rectangle
-	ps << "0 " << (int)(getBoundingBox()._width) << " rlineto\n";
-	ps << (int)(getBoundingBox()._height) << " 0 rlineto\n";
-	ps << "0 " << (int)(-getBoundingBox()._width) << " rlineto\n";
-	ps << (int)(-getBoundingBox()._height) << " 0 rlineto\n";
+	ps << "0 " << (int)(getBoundingBox()._height) << " rlineto\n";
+	ps << (int)(getBoundingBox()._width) << " 0 rlineto\n";
+	ps << "0 " << (int)(-getBoundingBox()._height) << " rlineto\n";
+	ps << (int)(-getBoundingBox()._width) << " 0 rlineto\n";
 	ps << "closepath\n";
 	ps << "stroke\n";
 

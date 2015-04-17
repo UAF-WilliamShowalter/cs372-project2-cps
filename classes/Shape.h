@@ -20,12 +20,13 @@ struct Coordinate
 	int _x, _y;
 };
 
-const Coordinate MIDDLEOFPAGE((int)(8.5*0.5*70),(int)(11*0.5*70)); // middle of an 8.5 inch by 11 inch paper
+const Coordinate MIDDLEOFPAGE((int)(8.5*0.5*72),(int)(11*0.5*72)); // middle of an 8.5 inch by 11 inch paper
 
 struct BoundingBox
 {
 	BoundingBox():_center(MIDDLEOFPAGE),_width(0),_height(0){}
 	BoundingBox(double width, double height):_center(MIDDLEOFPAGE),_width(width),_height(height){}
+	BoundingBox(double width, double height, Coordinate center):_center(center),_width(width),_height(height){}
 
 	Coordinate _center; // this is where shapes start its drawing
 	double _width, _height;

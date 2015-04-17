@@ -5,36 +5,35 @@
 
 #include "CompoundShape.h"
 #include <iostream>
+#include <sstream>
 
 BoundingBox CompoundShape::calculateBoundingBox() {
 
-	std::vector <BoundingBox> boxes;
-
-	for (auto shape : _shapes) {
-		boxes.push_back(shape->getBoundingBox());
-	}
-
-	return getCompoundBoundingBox(boxes);
+	return getCompoundBoundingBox(_shapes);
 }
 
 std::string CompoundShape::calculatePostScript() {
-	std::string ps;
+	std::stringstream ps;
 	BoundingBox previous;
 
-	for (auto shape : _shapes) {
-
+//	ps << (int)(-getBoundingBox()._width/2) << " " << (int)(-getBoundingBox()._height/2) << " translate \n";
+	auto first = _shapes[0];
+	for (auto shape : _shapes) 
+	{
+		//ps << "\ngsave\n";
 		if (shape != _shapes[0])
 		{ 
-			ps += getBetweenShapePostScript(shape->getBoundingBox(),previous);
+			ps << getBetweenShapePostScript(shape->getBoundingBox(),previous);
 		}
 
 		previous = shape->getBoundingBox();
 
 		std::string temp = shape->getPostScript();
 		temp.erase(0, temp.find("\n") + 1); // first line is translate, get rid of it
-		ps += temp;
+		ps << temp;
+		//ps << "\ngrestore\n";
 
 	}
 
-	return ps;
+	return ps.str();
 }
