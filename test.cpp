@@ -33,7 +33,6 @@ using std::remove;
 
 void writePostScriptToFile(Shape *shape, string fileName)
 {
-	//shape->getDrawBoundingBoxPostScript();
 	stringstream shapePostScript(shape->getPostScript());
 
 	ofstream outputFile(fileName, std::ios_base::app);

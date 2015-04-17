@@ -20,7 +20,7 @@ BoundingBox Rectangle::calculateBoundingBox()
 
 std::string Rectangle::calculatePostScript()
 {
-	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
+	std::stringstream ps;
 
 	ps << "% BEGIN RECTANGLE\n";
 

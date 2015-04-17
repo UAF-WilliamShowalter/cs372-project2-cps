@@ -14,7 +14,7 @@ Polygon::Polygon(int numSides, double sideLength):_numSides(numSides),_sideLengt
 	if(_numSides<1)
 	{
 		_numSides = 1;
-		setBoundingBox(calculateBoundingBox()); // default to a triangle
+		setBoundingBox(calculateBoundingBox()); // negative sides is bad
 	}
 	else
 	{
@@ -22,7 +22,7 @@ Polygon::Polygon(int numSides, double sideLength):_numSides(numSides),_sideLengt
 	}
 	
 	setPostScript(getBoundingCenterPostScript());
-	setPostScript(getDrawBoundingBoxPostScript()); // TODO: this breaks it
+	setPostScript(getDrawBoundingBoxPostScript());
 	setPostScript(calculatePostScript());
 }
 
@@ -45,12 +45,12 @@ BoundingBox Polygon::calculateBoundingBox()
 	}
 
 	return BoundingBox(xMax-xMin,yMax-yMin);
-	// TODO: Drawing the bounding box gives different results than this...
+	// TODO: Drawing the bounding box gives slightly different results than this.
 }
 
 std::string Polygon::calculatePostScript()
 {
-	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
+	std::stringstream ps;
 
 	ps << "% BEGIN POLYGON\n";
 
