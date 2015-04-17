@@ -8,6 +8,7 @@
 
 #define PI 3.14159265358979323846
 
+#include <iostream>
 #include <string> // for `string`
 #include <sstream> // for `stringstream`
 #include <memory> // for `unique_ptr`, `make_unique`, `move`
@@ -26,7 +27,7 @@ struct BoundingBox
 {
 	BoundingBox():_center(MIDDLEOFPAGE),_width(0),_height(0){}
 	BoundingBox(double width, double height):_center(MIDDLEOFPAGE),_width(width),_height(height){}
-	BoundingBox(double width, double height, Coordinate center):_center(center),_width(width),_height(height){}
+	BoundingBox(double width, double height, Coordinate center):_center(center),_width(width),_height(height) {}
 
 	Coordinate _center; // this is where shapes start its drawing
 	double _width, _height;
@@ -51,7 +52,7 @@ public:
 	virtual BoundingBox calculateBoundingBox() = 0;
 	virtual std::string calculatePostScript() = 0;
 
-	std::string getBoundingCenterPostScript();
+	virtual std::string getBoundingCenterPostScript();
 	std::string getDrawBoundingBoxPostScript();
 	void setCenter(Coordinate newCenter);
 

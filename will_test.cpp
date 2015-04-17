@@ -39,6 +39,7 @@ using std::shared_ptr;
 #include "classes/Horizontal.h"
 #include "classes/Vertical.h"
 
+
 void writePostScriptToFile(Shape *shape, string fileName)
 {
 	stringstream shapePostScript(shape->getPostScript());
@@ -55,6 +56,8 @@ void writePostScriptToFile(Shape *shape, string fileName)
 
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
+	Shape::flipDrawBoundingBox(); // turns on drawing of bounding boxes
+
 	Polygon polygon1(9, 72); // 9 sides, each side is 72 in length
 	Polygon polygon2(13, 72); // 9 sides, each side is 72 in length
 	Circle circle1(72); // radius is 72

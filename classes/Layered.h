@@ -23,7 +23,7 @@ public:
 		setPostScript(calculatePostScript());
 	}
 
-	BoundingBox getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> & shapes);
+	BoundingBox getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> shapes);
 	std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, BoundingBox previousBoundingBox);
 };
 

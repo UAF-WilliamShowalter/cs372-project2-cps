@@ -14,7 +14,7 @@ std::string Layered::getBetweenShapePostScript(BoundingBox currentBoundingBox,
 	return ps.str();
 }
 
-BoundingBox Layered::getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> & shapes) {
+BoundingBox Layered::getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> shapes) {
 
 	double maxHeight = 0, maxWidth = 0;
 

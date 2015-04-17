@@ -47,6 +47,7 @@ void Shape::replacePostScript(std::string postScriptCode)
 std::string Shape::getBoundingCenterPostScript()
 {
 	std::stringstream ps;
+	ps << "%getBoundingCenterPostScript\n";
 	ps << getBoundingBox()._center._x << " " << getBoundingBox()._center._y << " translate\n";
 	return ps.str();
 }
