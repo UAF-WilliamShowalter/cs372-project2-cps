@@ -5,9 +5,7 @@
 
 #include "Polygon.h"
 
-#include <cmath>
-using std::sin;
-using std::cos;
+#include <cmath> // for sin and cos
 
 Polygon::Polygon(int numSides, double sideLength):_numSides(numSides),_sideLength(sideLength)
 {
@@ -32,8 +30,8 @@ BoundingBox Polygon::calculateBoundingBox()
 
 	for (double theta = 0.0; theta < 2*PI; theta += 2.0*PI/_numSides)
 	{
-		x = _sideLength*cos(theta)+x;
-		y = _sideLength*sin(theta)+y;
+		x = _sideLength*std::cos(theta)+x;
+		y = _sideLength*std::sin(theta)+y;
 		if (x > xMax)
 			xMax = x;
 		if (x < xMin)
