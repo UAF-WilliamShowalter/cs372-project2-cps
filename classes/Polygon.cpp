@@ -9,17 +9,26 @@
 using std::sin;
 using std::cos;
 
-Polygon::Polygon(double numSides, double sideLength):_numSides(numSides),_sideLength(sideLength)
+Polygon::Polygon(int numSides, double sideLength):_numSides(numSides),_sideLength(sideLength)
 {
-	setBoundingBox(calculateBoundingBox(numSides,sideLength));
+	if(numSides<1)
+	{
+		_numSides = 1;
+		setBoundingBox(calculateBoundingBox(_numSides,sideLength)); // default to a triangle
+	}
+	else
+	{
+		setBoundingBox(calculateBoundingBox(numSides,sideLength));
+	}
+	
 	setPostScript(appendPostScript());
 }
 
-BoundingBox Polygon::calculateBoundingBox(double numSides, double sideLength)
+BoundingBox Polygon::calculateBoundingBox(int numSides, double sideLength)
 {
 	double x = 0, y = 0, xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 
-	for (double theta = 0.0; theta < 2*PI; theta+= 2.0*PI/numSides)
+	for (double theta = 0.0; theta < 2*PI; theta += 2.0*PI/numSides)
 	{
 		x = sideLength*cos(theta)+x;
 		y = sideLength*sin(theta)+y;
@@ -34,6 +43,7 @@ BoundingBox Polygon::calculateBoundingBox(double numSides, double sideLength)
 	}
 
 	return BoundingBox(xMax-xMin,yMax-yMin);
+	// TODO: Drawing the bounding box gives different results than this...
 }
 
 std::stringstream Polygon::appendPostScript()
@@ -47,8 +57,10 @@ std::stringstream Polygon::appendPostScript()
 	ps << "newpath\n";
 	ps << "0 0 moveto\n";
 
+	ps << (int)(-_sideLength/2) << " " << (int)(-getBoundingBox()._height/2) << " rmoveto\n";
+
 	// setup loop of drawing (angles)
-	ps << "0 " << (int)(360/_numSides) << " 360 {\n";
+	ps << "0 " << (360.0/_numSides) << " 360 {\n";
 	
 	// setup variables
 	ps << "/angle exch def\n";
@@ -66,6 +78,8 @@ std::stringstream Polygon::appendPostScript()
 	ps << "grestore\n";
 
 	ps << "% END POLYGON\n\n";
+
+	ps << drawBoundingBox().str();
 
 	return ps;
 }

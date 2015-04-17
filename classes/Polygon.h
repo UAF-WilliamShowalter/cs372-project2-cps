@@ -11,13 +11,14 @@
 class Polygon : public Shape
 {
 public:
-	Polygon(double numSides, double sideLength);
+	Polygon(int numSides, double sideLength);
 	virtual ~Polygon() = default; // triangle and square are derived from polygon
 	
-	virtual BoundingBox calculateBoundingBox(double numSides, double sideLength);
+	virtual BoundingBox calculateBoundingBox(int numSides, double sideLength);
 	virtual std::stringstream appendPostScript();
 private:
-	double _numSides, _sideLength;
+	int _numSides;
+	double _sideLength;
 };
 
 #endif

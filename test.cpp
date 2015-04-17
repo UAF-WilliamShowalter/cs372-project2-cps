@@ -33,6 +33,7 @@ using std::remove;
 
 void writePostScriptToFile(Shape *shape, string fileName)
 {
+	shape->drawBoundingBox();
 	stringstream shapePostScript(shape->getPostScript());
 
 	ofstream outputFile(fileName, std::ios_base::app);
@@ -64,6 +65,15 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	writePostScriptToFile(polygon1_ptr, fileName);
 	writePostScriptToFile(circle1_ptr, fileName);
 	writePostScriptToFile(rectangle1_ptr, fileName);
+
+	/*Shape *polygon;
+
+	for(int i=0; i<100; ++i)
+	{
+		polygon = new Polygon(i, 72);
+		writePostScriptToFile(polygon, fileName);
+		delete polygon;
+	}*/
 
 	REQUIRE(0==0);
 }

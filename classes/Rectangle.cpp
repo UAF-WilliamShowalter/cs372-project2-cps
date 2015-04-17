@@ -28,6 +28,9 @@ std::stringstream Rectangle::appendPostScript()
 	ps << "0 0 moveto\n";
 	
 	// setup starting point of shape (relative)
+	// TODO: this could be a helper function of Shape: moveToStartDraw()
+	// virtual, not pure virtual (polygon does something different)
+	// circle doesn't move
 	ps << (int)(-getBoundingBox()._width/2) << " " << (int)(-getBoundingBox()._height/2) << " rmoveto\n";
 	
 	// draw rectangle
@@ -41,7 +44,9 @@ std::stringstream Rectangle::appendPostScript()
 	// restore point
 	ps << "grestore\n";
 
-	ps << "% BEGIN RECTANGLE\n\n";
+	ps << "% END RECTANGLE\n\n";
+
+	ps << drawBoundingBox().str();
 
 	return ps;
 }

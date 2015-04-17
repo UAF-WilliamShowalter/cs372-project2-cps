@@ -18,7 +18,7 @@ BoundingBox Shape::getBoundingBox()
 
 std::string Shape::getPostScript()
 {
-	return _postScriptCode.str();
+	return _postScriptCode.str(); // stringstreams are not returnable
 }
 
 void Shape::setBoundingBox(BoundingBox boundingBox)
@@ -28,7 +28,7 @@ void Shape::setBoundingBox(BoundingBox boundingBox)
 
 void Shape::setPostScript(std::stringstream postScriptCode)
 {
-	_postScriptCode << postScriptCode.str(); // string streams aren't copyable
+	_postScriptCode << postScriptCode.str(); // stringstreams aren't copyable
 }
 
 BoundingBox Shape::calculateBoundingBox()
@@ -49,4 +49,34 @@ std::stringstream Shape::appendPostScript()
 
 	return ps;
 }
+
+std::stringstream Shape::drawBoundingBox()
+{
+	std::stringstream ps(getPostScript()); // put the old postscript code in first
+
+	ps << "% BEGIN BOUNDINGBOX\n";
+
+	// save point
+	ps << "gsave\n";
+	ps << "newpath\n";
+	ps << "0 0 moveto\n";
+
+	ps << (int)(-getBoundingBox()._width/2) << " " << (int)(-getBoundingBox()._height/2) << " rmoveto\n";
+	
+	// draw rectangle
+	ps << "0 " << (int)(getBoundingBox()._width) << " rlineto\n";
+	ps << (int)(getBoundingBox()._height) << " 0 rlineto\n";
+	ps << "0 " << (int)(-getBoundingBox()._width) << " rlineto\n";
+	ps << (int)(-getBoundingBox()._height) << " 0 rlineto\n";
+	ps << "closepath\n";
+	ps << "stroke\n";
+
+	// restore point
+	ps << "grestore\n";
+
+	ps << "% END BOUNDINGBOX\n\n";
+
+	return ps;
+}
+
 

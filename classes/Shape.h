@@ -26,10 +26,9 @@ struct BoundingBox
 {
 	BoundingBox():_center(MIDDLEOFPAGE),_width(0),_height(0){}
 	BoundingBox(double width, double height):_center(MIDDLEOFPAGE),_width(width),_height(height){}
-	
+
 	Coordinate _center; // this is where shapes start its drawing
-	double _width = 0;
-	double _height = 0;
+	double _width, _height;
 };
 
 class Shape
@@ -46,6 +45,8 @@ public:
 
 	virtual BoundingBox calculateBoundingBox();
 	virtual std::stringstream appendPostScript();
+
+	std::stringstream drawBoundingBox();
 
 private:
 	BoundingBox _boundingBox;

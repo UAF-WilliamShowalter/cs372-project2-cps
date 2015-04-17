@@ -28,7 +28,7 @@ std::stringstream Circle::appendPostScript()
 	ps << "newpath\n";
 	
 	// draw circle
-	ps << "0 0 " << (int)(getBoundingBox()._width) << " 0 360 arc\n";
+	ps << "0 0 " << (int)(getBoundingBox()._width/2) << " 0 360 arc\n";
 	ps << "closepath\n";
 	ps << "stroke\n";
 
@@ -36,6 +36,8 @@ std::stringstream Circle::appendPostScript()
 	ps << "grestore\n";
 
 	ps << "% END CIRCLE\n\n";
+
+	ps << drawBoundingBox().str();
 
 	return ps;
 }
