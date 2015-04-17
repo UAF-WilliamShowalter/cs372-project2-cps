@@ -39,6 +39,7 @@ public:
 	
 	BoundingBox getBoundingBox();
 	std::string getPostScript();
+	void setCenter(Coordinate newCenter);
 
 	void setBoundingBox(BoundingBox boundingBox);
 	void setPostScript(std::string postScriptCode);

@@ -68,4 +68,6 @@ std::string Shape::getDrawBoundingBoxPostScript()
 	return ps.str();
 }
 
-
+void Shape::setCenter(Coordinate newCenter){
+	_boundingBox._center = newCenter;
+}
