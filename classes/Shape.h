@@ -42,10 +42,10 @@ public:
 
 	BoundingBox getBoundingBox();
 	std::string getPostScript();
-	void setCenter(Coordinate newCenter);
 
 	void setBoundingBox(BoundingBox boundingBox);
 	void setPostScript(std::string postScriptCode);
+	void replacePostScript(std::string postScriptCode);
 
 	// these are used by derived classes
 	virtual BoundingBox calculateBoundingBox() = 0;
@@ -53,6 +53,7 @@ public:
 
 	std::string getBoundingCenterPostScript();
 	std::string getDrawBoundingBoxPostScript();
+	void setCenter(Coordinate newCenter);
 
 private:
 	BoundingBox _boundingBox;

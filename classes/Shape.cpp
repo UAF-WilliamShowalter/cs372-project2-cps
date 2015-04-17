@@ -36,7 +36,12 @@ void Shape::setBoundingBox(BoundingBox boundingBox)
 
 void Shape::setPostScript(std::string postScriptCode)
 {
-	_postScriptCode += postScriptCode; // stringstreams aren't copyable
+	_postScriptCode += postScriptCode;
+}
+
+void Shape::replacePostScript(std::string postScriptCode)
+{
+	_postScriptCode = postScriptCode;
 }
 
 std::string Shape::getBoundingCenterPostScript()
