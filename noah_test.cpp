@@ -36,6 +36,9 @@ using std::remove;
 #include "classes/ShapeDecorator.h"
 #include "classes/ScaledShape.h"
 #include "classes/RotatedShape.h"
+#include "classes/Triangle.h"
+#include "classes/Square.h"
+#include "classes/Spacer.h"
 
 void writePostScriptToFile(Shape *shape, string fileName)
 {
@@ -53,8 +56,13 @@ void writePostScriptToFile(Shape *shape, string fileName)
 
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
+	//Shape::flipDrawBoundingBox(); // turns on drawing of bounding boxes
+
 	Polygon polygon1(9, 72); // 9 sides, each side is 72 in length
-	
+	Triangle triangle1(72);
+	Square square1(72);
+	Spacer spacer1(72,72);
+
 	RotatedShape rotatedpolygon1(make_shared<Polygon>(polygon1), Ninety);
 	ScaledShape scaledpolygon1(make_shared<Polygon>(polygon1), 2, 2);
 	RotatedShape rotatedscaledpolygon1(make_shared<ScaledShape>(scaledpolygon1), Ninety);
@@ -70,6 +78,10 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	}
 
 	writePostScriptToFile(&polygon1, fileName);
+	writePostScriptToFile(&triangle1, fileName);
+	writePostScriptToFile(&square1, fileName);
+	writePostScriptToFile(&spacer1, fileName);
+
 	writePostScriptToFile(&rotatedpolygon1, fileName);
 	writePostScriptToFile(&scaledpolygon1, fileName);
 	writePostScriptToFile(&rotatedscaledpolygon1, fileName);

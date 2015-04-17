@@ -37,7 +37,9 @@ class Shape
 public:
 	//Shape();
 	virtual ~Shape() = default;
-	
+	static bool _drawBoundingBox; // starts false
+	static void flipDrawBoundingBox();
+
 	BoundingBox getBoundingBox();
 	std::string getPostScript();
 	void setCenter(Coordinate newCenter);
