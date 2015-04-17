@@ -24,6 +24,8 @@ public:
 	virtual std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, 
 								BoundingBox previousBoundingBox) = 0;
 
+	virtual BoundingBox getCompoundBoundingBox(std::vector<BoundingBox> boxes) = 0;
+
 private:
 	std::vector<std::shared_ptr<Shape>> _shapes;
 };

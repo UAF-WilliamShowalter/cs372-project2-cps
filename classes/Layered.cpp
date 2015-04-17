@@ -13,3 +13,17 @@ std::string Layered::getBetweenShapePostScript(BoundingBox currentBoundingBox,
 	ps << "\n%LAYERED SHAPE MODIFIER NONE\n";
 	return ps.str();
 }
+
+BoundingBox Layered::getCompoundBoundingBox(std::vector<BoundingBox> boxes) {
+
+	double maxHeight = 0, maxWidth = 0;
+
+	for (auto box : boxes) {
+		if (maxHeight < box._height)
+			maxHeight = box._height;
+		if (maxWidth < box._width)
+			maxWidth = box._width;
+	}
+
+	return BoundingBox(maxWidth, maxHeight);
+}

@@ -63,6 +63,12 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	shared_ptr<Shape> layered1 = make_shared<Layered>(std::initializer_list<shared_ptr<Shape>>
 				({make_shared<Circle>(72), make_shared<Polygon>(9,72)}));
 
+	shared_ptr<Shape> vertical1 = make_shared<Vertical>(std::initializer_list<shared_ptr<Shape>>
+				({make_shared<Circle>(72), make_shared<Polygon>(9,72)}));
+
+	shared_ptr<Shape> horizontal1 = make_shared<Horizontal>(std::initializer_list<shared_ptr<Shape>>
+				({make_shared<Circle>(72), make_shared<Polygon>(9,72)}));
+
 	string fileName = "experiment.ps";
 
 	if(ifstream(fileName)) // if the file exists
@@ -71,6 +77,8 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	}
 
 	writePostScriptToFile(layered1.get(), fileName);
+	writePostScriptToFile(vertical1.get(), fileName);
+	writePostScriptToFile(horizontal1.get(), fileName);
 //	writePostScriptToFile(&polygon1, fileName);
 //	writePostScriptToFile(&polygon2, fileName);
 //	writePostScriptToFile(&circle1, fileName);

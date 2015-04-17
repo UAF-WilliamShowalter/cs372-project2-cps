@@ -16,9 +16,14 @@ class Vertical : public CompoundShape
 {
 public:
 	Vertical (std::initializer_list<std::shared_ptr<Shape>> shapes):CompoundShape(shapes)
-	{}
-
-	BoundingBox calculateBoundingBox();
+	{
+		setBoundingBox(calculateBoundingBox());
+		setPostScript(getBoundingCenterPostScript());
+		setPostScript(getDrawBoundingBoxPostScript());
+		setPostScript(calculatePostScript());
+	}
+	
+	BoundingBox getCompoundBoundingBox(std::vector<BoundingBox> boxes);
 	std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, BoundingBox previousBoundingBox);
 };
 

@@ -23,6 +23,7 @@ public:
 		setPostScript(calculatePostScript());
 	}
 
+	BoundingBox getCompoundBoundingBox(std::vector<BoundingBox> boxes);
 	std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, BoundingBox previousBoundingBox);
 };
 

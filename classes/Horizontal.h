@@ -16,8 +16,14 @@ class Horizontal : public CompoundShape
 {
 public:
 	Horizontal (std::initializer_list<std::shared_ptr<Shape>> shapes):CompoundShape(shapes)
-	{}
-
+	{
+		setBoundingBox(calculateBoundingBox());
+		setPostScript(getBoundingCenterPostScript());
+		setPostScript(getDrawBoundingBoxPostScript());
+		setPostScript(calculatePostScript());
+	}
+	
+	BoundingBox getCompoundBoundingBox(std::vector<BoundingBox> boxes);
 	std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, BoundingBox previousBoundingBox);
 };
 
