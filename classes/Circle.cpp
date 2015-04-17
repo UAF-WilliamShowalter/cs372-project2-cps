@@ -20,7 +20,7 @@ BoundingBox Circle::calculateBoundingBox()
 
 std::string Circle::calculatePostScript()
 {
-	std::stringstream ps;//(getPostScript()); // put the old postscript code in first
+	std::stringstream ps;
 
 	ps << "% BEGIN CIRCLE\n";
 
