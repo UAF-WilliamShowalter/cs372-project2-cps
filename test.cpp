@@ -24,12 +24,20 @@ using std::ofstream;
 #include <cstdio>
 using std::remove;
 
+#include <memory>
+using std::make_shared;
+using std::make_unique;
+using std::shared_ptr;
+
 #include "classes/Shape.h"
 #include "classes/CompoundShape.h"
 #include "classes/Polygon.h"
 #include "classes/Rectangle.h"
 #include "classes/Circle.h"
 #include "classes/ShapeDecorator.h"
+#include "classes/Layered.h"
+#include "classes/Horizontal.h"
+#include "classes/Vertical.h"
 
 void writePostScriptToFile(Shape *shape, string fileName)
 {
@@ -52,16 +60,21 @@ TEST_CASE("Implement C++ to PostScript.", "CPS")
 	Circle circle1(72); // radius is 72
 	Rectangle rectangle1(72, 144); // width 72, height 144
 
+	shared_ptr<Shape> layered1 = make_shared<Layered>(std::initializer_list<shared_ptr<Shape>>
+				({make_shared<Circle>(72), make_shared<Polygon>(9,72)}));
+
 	string fileName = "experiment.ps";
+
 	if(ifstream(fileName)) // if the file exists
 	{
 		remove("experiment.ps"); // delete it
 	}
 
-	writePostScriptToFile(&polygon1, fileName);
-	writePostScriptToFile(&polygon2, fileName);
-	writePostScriptToFile(&circle1, fileName);
-	writePostScriptToFile(&rectangle1, fileName);
+	writePostScriptToFile(layered1.get(), fileName);
+//	writePostScriptToFile(&polygon1, fileName);
+//	writePostScriptToFile(&polygon2, fileName);
+//	writePostScriptToFile(&circle1, fileName);
+//	writePostScriptToFile(&rectangle1, fileName);
 
 	/*Shape *polygon;
 

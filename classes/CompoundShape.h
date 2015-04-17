@@ -7,15 +7,25 @@
 #define COMPOUNDSHAPE_H
 
 #include "Shape.h"
+#include <initializer_list>
+#include <vector>
+#include <memory>
+
 
 class CompoundShape : public Shape
 {
-private:
-	
 public:
-	BoundingBox getBoundingBox() { return BoundingBox(); }
-	//Coordinate getCoordinate() { return Coordinate(); }
-	std::stringstream getPostScript() { return std::stringstream(); }
+	CompoundShape (std::initializer_list<std::shared_ptr<Shape>> shapes):_shapes(shapes)
+	{}
+
+	BoundingBox calculateBoundingBox();
+	std::string calculatePostScript();
+
+	virtual std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, 
+								BoundingBox previousBoundingBox) = 0;
+
+private:
+	std::vector<std::shared_ptr<Shape>> _shapes;
 };
 
 #endif
