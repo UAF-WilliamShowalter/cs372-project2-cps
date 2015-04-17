@@ -5,11 +5,13 @@
 
 #include "Shape.h"
 
+/*
 Shape::Shape()
 {
-	setBoundingBox(calculateBoundingBox());
-	setPostScript(appendPostScript());
+	//setBoundingBox(calculateBoundingBox());
+	//setPostScript(calculatePostScript());
 }
+*/
 
 BoundingBox Shape::getBoundingBox()
 {
@@ -31,12 +33,13 @@ void Shape::setPostScript(std::stringstream postScriptCode)
 	_postScriptCode << postScriptCode.str(); // stringstreams aren't copyable
 }
 
+/*
 BoundingBox Shape::calculateBoundingBox()
 {
 	return getBoundingBox();
 }
 
-std::stringstream Shape::appendPostScript()
+std::stringstream Shape::calculatePostScript()
 {
 	std::stringstream ps(getPostScript());
 
@@ -47,12 +50,22 @@ std::stringstream Shape::appendPostScript()
 	
 	ps << "% END SHAPE\n\n";
 
+	ps << drawBoundingBox().str();
+
+	return ps;
+}
+*/
+
+std::stringstream Shape::getBoundingCenterPostScript()
+{
+	std::stringstream ps;
+	ps << getBoundingBox()._center._x << " " << getBoundingBox()._center._y << " translate\n";
 	return ps;
 }
 
-std::stringstream Shape::drawBoundingBox()
+std::stringstream Shape::getDrawBoundingBoxPostScript()
 {
-	std::stringstream ps(getPostScript()); // put the old postscript code in first
+	std::stringstream ps; // put the old postscript code in first
 
 	ps << "% BEGIN BOUNDINGBOX\n";
 

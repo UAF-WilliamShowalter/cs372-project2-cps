@@ -14,7 +14,7 @@ public:
 	Rectangle(double width, double height);
 
 	BoundingBox calculateBoundingBox();
-	std::stringstream appendPostScript();
+	std::stringstream calculatePostScript();
 
 private:
 	double _width, _height;

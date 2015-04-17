@@ -8,7 +8,9 @@
 Rectangle::Rectangle(double width, double height):_width(width),_height(height)
 {
 	setBoundingBox(calculateBoundingBox());
-	setPostScript(appendPostScript());
+	setPostScript(getBoundingCenterPostScript());
+	setPostScript(getDrawBoundingBoxPostScript());
+	setPostScript(calculatePostScript());
 }
 
 BoundingBox Rectangle::calculateBoundingBox()
@@ -16,7 +18,7 @@ BoundingBox Rectangle::calculateBoundingBox()
 	return BoundingBox(_width,_height);
 }
 
-std::stringstream Rectangle::appendPostScript()
+std::stringstream Rectangle::calculatePostScript()
 {
 	std::stringstream ps(getPostScript()); // put the old postscript code in first
 
@@ -45,8 +47,6 @@ std::stringstream Rectangle::appendPostScript()
 	ps << "grestore\n";
 
 	ps << "% END RECTANGLE\n\n";
-
-	ps << drawBoundingBox().str();
 
 	return ps;
 }

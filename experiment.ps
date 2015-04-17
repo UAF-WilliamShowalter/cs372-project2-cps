@@ -1,7 +1,17 @@
-%!
-% BEGIN SHAPE
 297 385 translate
-% END SHAPE
+% BEGIN BOUNDINGBOX
+gsave
+newpath
+0 0 moveto
+-103 -102 rmoveto
+0 207 rlineto
+204 0 rlineto
+0 -207 rlineto
+-204 0 rlineto
+closepath
+stroke
+grestore
+% END BOUNDINGBOX
 
 % BEGIN POLYGON
 gsave
@@ -10,91 +20,13 @@ newpath
 -36 -102 rmoveto
 0 40 360 {
 /angle exch def
-angle rotate 72 0  rlineto
+angle rotate 72 0 rlineto
 360 angle sub rotate
 } for stroke
 grestore
 % END POLYGON
 
-% BEGIN BOUNDINGBOX
-gsave
-newpath
-0 0 moveto
--102 -103 rmoveto
-0 204 rlineto
-207 0 rlineto
-0 -204 rlineto
--207 0 rlineto
-closepath
-stroke
-grestore
-% END BOUNDINGBOX
-
-showpage
-
-%!
-% BEGIN SHAPE
-297 385 translate
-% END SHAPE
-
-% BEGIN CIRCLE
-gsave
-0 0 moveto
-newpath
-0 0 36 0 360 arc
-closepath
-stroke
-grestore
-% END CIRCLE
-
-% BEGIN BOUNDINGBOX
-gsave
-newpath
-0 0 moveto
--36 -36 rmoveto
-0 72 rlineto
-72 0 rlineto
-0 -72 rlineto
--72 0 rlineto
-closepath
-stroke
-grestore
-% END BOUNDINGBOX
-
-showpage
-
-%!
-% BEGIN SHAPE
-297 385 translate
-% END SHAPE
-
-% BEGIN RECTANGLE
-gsave
-newpath
-0 0 moveto
--36 -72 rmoveto
-0 72 rlineto
-144 0 rlineto
-0 -72 rlineto
--144 0 rlineto
-closepath
-stroke
-grestore
-% END RECTANGLE
-
-% BEGIN BOUNDINGBOX
-gsave
-newpath
-0 0 moveto
--72 -36 rmoveto
-0 144 rlineto
-72 0 rlineto
-0 -144 rlineto
--72 0 rlineto
-closepath
-stroke
-grestore
-% END BOUNDINGBOX
+D BOUNDINGBOX
 
 showpage
 

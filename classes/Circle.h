@@ -14,7 +14,7 @@ public:
 	Circle(double radius);
 
 	BoundingBox calculateBoundingBox();
-	std::stringstream appendPostScript();
+	std::stringstream calculatePostScript();
 
 private:
 	double _radius;

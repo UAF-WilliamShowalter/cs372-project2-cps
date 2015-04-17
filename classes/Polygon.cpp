@@ -11,27 +11,29 @@ using std::cos;
 
 Polygon::Polygon(int numSides, double sideLength):_numSides(numSides),_sideLength(sideLength)
 {
-	if(numSides<1)
+	if(_numSides<1)
 	{
 		_numSides = 1;
-		setBoundingBox(calculateBoundingBox(_numSides,sideLength)); // default to a triangle
+		setBoundingBox(calculateBoundingBox()); // default to a triangle
 	}
 	else
 	{
-		setBoundingBox(calculateBoundingBox(numSides,sideLength));
+		setBoundingBox(calculateBoundingBox());
 	}
 	
-	setPostScript(appendPostScript());
+	setPostScript(getBoundingCenterPostScript());
+	setPostScript(getDrawBoundingBoxPostScript()); // TODO: this breaks it
+	setPostScript(calculatePostScript());
 }
 
-BoundingBox Polygon::calculateBoundingBox(int numSides, double sideLength)
+BoundingBox Polygon::calculateBoundingBox()
 {
 	double x = 0, y = 0, xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 
-	for (double theta = 0.0; theta < 2*PI; theta += 2.0*PI/numSides)
+	for (double theta = 0.0; theta < 2*PI; theta += 2.0*PI/_numSides)
 	{
-		x = sideLength*cos(theta)+x;
-		y = sideLength*sin(theta)+y;
+		x = _sideLength*cos(theta)+x;
+		y = _sideLength*sin(theta)+y;
 		if (x > xMax)
 			xMax = x;
 		if (x < xMin)
@@ -46,7 +48,7 @@ BoundingBox Polygon::calculateBoundingBox(int numSides, double sideLength)
 	// TODO: Drawing the bounding box gives different results than this...
 }
 
-std::stringstream Polygon::appendPostScript()
+std::stringstream Polygon::calculatePostScript()
 {
 	std::stringstream ps(getPostScript()); // put the old postscript code in first
 
@@ -66,7 +68,7 @@ std::stringstream Polygon::appendPostScript()
 	ps << "/angle exch def\n";
 	
 	// draw line
-	ps << "angle rotate " << _sideLength << " 0 " << " rlineto\n";
+	ps << "angle rotate " << _sideLength << " 0 rlineto\n";
 
 	// fix angle without restore (to avoid loosing currentposition)
 	ps << "360 angle sub rotate\n";
@@ -78,8 +80,6 @@ std::stringstream Polygon::appendPostScript()
 	ps << "grestore\n";
 
 	ps << "% END POLYGON\n\n";
-
-	ps << drawBoundingBox().str();
 
 	return ps;
 }

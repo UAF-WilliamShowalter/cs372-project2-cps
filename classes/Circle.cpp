@@ -8,7 +8,9 @@
 Circle::Circle(double radius):_radius(radius)
 {
 	setBoundingBox(calculateBoundingBox());
-	setPostScript(appendPostScript());
+	setPostScript(getBoundingCenterPostScript());
+	setPostScript(getDrawBoundingBoxPostScript());
+	setPostScript(calculatePostScript());
 }
 
 BoundingBox Circle::calculateBoundingBox()
@@ -16,7 +18,7 @@ BoundingBox Circle::calculateBoundingBox()
 	return BoundingBox(_radius,_radius);
 }
 
-std::stringstream Circle::appendPostScript()
+std::stringstream Circle::calculatePostScript()
 {
 	std::stringstream ps(getPostScript()); // put the old postscript code in first
 
@@ -36,8 +38,6 @@ std::stringstream Circle::appendPostScript()
 	ps << "grestore\n";
 
 	ps << "% END CIRCLE\n\n";
-
-	ps << drawBoundingBox().str();
 
 	return ps;
 }

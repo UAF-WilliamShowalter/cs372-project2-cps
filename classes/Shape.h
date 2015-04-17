@@ -34,7 +34,7 @@ struct BoundingBox
 class Shape
 {
 public:
-	Shape();
+	//Shape();
 	virtual ~Shape() = default;
 	
 	BoundingBox getBoundingBox();
@@ -43,10 +43,12 @@ public:
 	void setBoundingBox(BoundingBox boundingBox);
 	void setPostScript(std::stringstream postScriptCode);
 
-	virtual BoundingBox calculateBoundingBox();
-	virtual std::stringstream appendPostScript();
+	// these are used by derived classes
+	virtual BoundingBox calculateBoundingBox() = 0;
+	virtual std::stringstream calculatePostScript() = 0;
 
-	std::stringstream drawBoundingBox();
+	std::stringstream getBoundingCenterPostScript();
+	std::stringstream getDrawBoundingBoxPostScript();
 
 private:
 	BoundingBox _boundingBox;
