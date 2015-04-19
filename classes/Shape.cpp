@@ -47,8 +47,9 @@ void Shape::replacePostScript(std::string postScriptCode)
 std::string Shape::getBoundingCenterPostScript()
 {
 	std::stringstream ps;
-	ps << "%getBoundingCenterPostScript\n";
+	// don't put anything before the translate line because it gets removed later
 	ps << getBoundingBox()._center._x << " " << getBoundingBox()._center._y << " translate\n";
+	ps << "%getBoundingCenterPostScript\n";
 	return ps.str();
 }
 

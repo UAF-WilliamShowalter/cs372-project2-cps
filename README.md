@@ -11,27 +11,44 @@ This is the source code repository for a C++ to PostScript project for CS372.
 
 `main.cpp` is the release suite.
 
-`test.cpp` is the test/debug suite.
+`test.cpp` is the test/debug suite. (confirmed working)
 
 Both compile with: `clang++ -std=c++1y -Wall` (don't forget to also compile `classes/*.cpp`).
 
 The important files of this project are:
+
 `main.cpp` (main suite, currently empty)
+
 `test.cpp` (test suite, main focus of project)
+
 `classes/Shape.*` (code for base class Shape)
+
 `classes/Polygon.*` (code for class Polygon)
+
 `classes/Rectangle.*` (code for class Rectangle)
+
 `classes/Circle.*` (code for class Circle)
+
 `classes/Square.*` (code for class Square)
+
 `classes/Triangle.*` (code for class Triangle)
+
 `classes/Spacer.*` (code for class Spacer)
+
 `classes/Star.*` (code for class Star, custom shape)
+
 `classes/ShapeDecorator.*` (code for class ShapeDecorator, using Decorator design pattern)
+
 `classes/RotatedShape.*` (code for class RotatedShape)
+
 `classes/ScaledShape.*` (code for class ScaledShape)
+
 `classes/CompoundShape.*` (code for class CompoundShape)
+
 `classes/Layered.*` (code for class Layered)
+
 `classes/Horizontal.*` (code for class Horizontal)
+
 `classes/Vertical.*` (code for class Vertical)
 
 By including all of the code in the `classes` directory, all functionality will be displayed in any main code.

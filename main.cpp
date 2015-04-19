@@ -56,53 +56,5 @@ int main(int argc, char*argv[])
 {
 	Shape::flipDrawBoundingBox(); // turns on drawing of bounding boxes
 
-	Polygon polygon1(9, 72); // 9 sides, each side is 72 in length
-	Polygon polygon2(13, 72); // 9 sides, each side is 72 in length
-	Circle circle1(72); // radius is 72
-	Rectangle rectangle1(72, 144); // width 72, height 144
-
-	/*shared_ptr<Shape> layered1 = make_shared<Layered>(std::initializer_list<shared_ptr<Shape>>
-				({make_shared<Circle>(72), make_shared<Polygon>(9,72)}));
-				*/
-
-	shared_ptr<Shape> vertical1 = make_shared<Vertical>(std::initializer_list<shared_ptr<Shape>>
-				({make_shared<Circle>(72/2), make_shared<Polygon>(9,72/2),
-				 make_shared<Rectangle>(72/2,144/2), make_shared<Polygon>(5,72/2)}));
-				 
-
-
-	shared_ptr<Shape> horizontal1 = make_shared<Horizontal>(std::initializer_list<shared_ptr<Shape>>
-				({make_shared<Circle>(72/2), make_shared<Polygon>(9,72/2),
-				 make_shared<Rectangle>(72/2,144/2), make_shared<Polygon>(5,72/2)}));
-
-	shared_ptr<Shape> vertical2 = make_shared<Vertical>(std::initializer_list<shared_ptr<Shape>>
-				({make_shared<Circle>(72/2), make_shared<Polygon>(9,72/2),
-				 make_shared<Rectangle>(72/2,144/2), make_shared<Polygon>(5,72/2)}));
-				 
-
-
-	shared_ptr<Shape> horizontal2 = make_shared<Horizontal>(std::initializer_list<shared_ptr<Shape>>
-				({make_shared<Circle>(72/2), make_shared<Polygon>(9,72/2),
-				 make_shared<Rectangle>(72/2,144/2), make_shared<Polygon>(5,72/2)}));
-
-
-	/*shared_ptr<Shape> horizontal3 = make_shared<Horizontal>(std::initializer_list<shared_ptr<Shape>>
-				({make_shared<Circle>(72/2)}));
-	*/
-
-	shared_ptr<Shape> horizontalVerticalStack = 
-			make_shared<Horizontal>(std::initializer_list<shared_ptr<Shape>>
-				({horizontal2,vertical2}));
-
-	string fileName = "experiment.ps";
-
-	if(ifstream(fileName)) // if the file exists
-	{
-		remove("experiment.ps"); // delete it
-	}
-
-	writePostScriptToFile(vertical1.get(), fileName);
-	writePostScriptToFile(horizontal1.get(), fileName);
-	writePostScriptToFile(horizontalVerticalStack.get(), fileName);
 	return 0;
 }
