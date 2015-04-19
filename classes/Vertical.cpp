@@ -17,7 +17,9 @@ std::string Vertical::getBetweenShapePostScript(BoundingBox currentBoundingBox,
 	return ps.str();
 }
 
-BoundingBox Vertical::getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> & shapes) {
+BoundingBox Vertical::getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> shapes) {
+// Everything needs refactored
+// This all needs changed
 
 	double sumHeight = 0, maxWidth = 0;
 
@@ -29,24 +31,30 @@ BoundingBox Vertical::getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>>
 	}
 
 	auto newCenterX = getBoundingBox()._center._x;
-	auto newCenterY = getBoundingBox()._center._y - sumHeight/2;
+	auto newCenterY = getBoundingBox()._center._y;
 
-/*	auto shapeFirst = shapes[0]; 
-	shapeFirst->setCenter(Coordinate(newCenterY - sumHeight + shapeFirst->getBoundingBox()._height/2,newCenterY));
+	auto shapeFirst = shapes[0];
+	shapeFirst->setCenter(Coordinate(newCenterX, newCenterY - sumHeight/2 + shapeFirst->getBoundingBox()._height/2));
+	shapeFirst->replacePostScript("%NEW TRANSLATE FIRST\n" + 
+		shapeFirst->getBoundingCenterPostScript() + shapeFirst->getDrawBoundingBoxPostScript() + shapeFirst->calculatePostScript());
 
 	auto previousShape = shapeFirst;
 
 	for (auto shape : shapes) {
-		if (shape != shapes[0]) {
+		if (shape.get() != shapes[0].get()) {
 			auto currentX = shape->getBoundingBox()._center._x;
 			auto currentY = shape->getBoundingBox()._center._y;
-			auto newX = currentX + previousShape->getBoundingBox()._width/2 
-							+ shape->getBoundingBox()._width/2;
-			shape->setCenter(Coordinate(newX,currentY));
+
+			auto newY = previousShape->getBoundingBox()._center._y +
+						previousShape->getBoundingBox()._height/2 +
+						shape->getBoundingBox()._height/2;
+
+			shape->setCenter(Coordinate(newCenterX,newY));
+			shape->replacePostScript("%NEW TRANSLATE\n" + 
+				shape->getBoundingCenterPostScript() + shape->getDrawBoundingBoxPostScript() + shape->calculatePostScript());
 		}
 		previousShape = shape;
 	}
-*/
 
 	return BoundingBox(maxWidth, sumHeight, Coordinate(newCenterX, newCenterY));
 }

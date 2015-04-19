@@ -8,6 +8,7 @@
 
 #define PI 3.14159265358979323846
 
+#include <iostream>
 #include <string> // for `string`
 #include <sstream> // for `stringstream`
 #include <memory> // for `unique_ptr`, `make_unique`, `move`
@@ -26,6 +27,7 @@ const Coordinate MIDDLEOFPAGE((int)(8.5*0.5*72),(int)(11*0.5*72));
 struct BoundingBox
 {
 	BoundingBox():_center(MIDDLEOFPAGE),_width(0),_height(0){}
+
 	BoundingBox(double width, double height):_center(MIDDLEOFPAGE),
 											 _width(width),
 											 _height(height){}
@@ -56,7 +58,7 @@ public:
 	virtual BoundingBox calculateBoundingBox() = 0;
 	virtual std::string calculatePostScript() = 0;
 
-	std::string getBoundingCenterPostScript();
+	virtual std::string getBoundingCenterPostScript();
 	std::string getDrawBoundingBoxPostScript();
 	void setCenter(Coordinate newCenter);
 

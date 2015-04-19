@@ -16,24 +16,29 @@ std::string CompoundShape::calculatePostScript() {
 	std::stringstream ps;
 	BoundingBox previous;
 
-//	ps << (int)(-getBoundingBox()._width/2) << " " << (int)(-getBoundingBox()._height/2) << " translate \n";
 	auto first = _shapes[0];
 	for (auto shape : _shapes) 
 	{
-		//ps << "\ngsave\n";
-		if (shape != _shapes[0])
-		{ 
-			ps << getBetweenShapePostScript(shape->getBoundingBox(),previous);
-		}
+		ps<<"%Compound before start shape\ngsave\n";
 
 		previous = shape->getBoundingBox();
 
-		std::string temp = shape->getPostScript();
-		temp.erase(0, temp.find("\n") + 1); // first line is translate, get rid of it
-		ps << temp;
-		//ps << "\ngrestore\n";
+		ps << shape->getPostScript();
+		ps << "\ngrestore\n";
 
 	}
+
+	return ps.str();
+}
+
+std::string CompoundShape::getBoundingCenterPostScript() {
+
+	// Something different can be done here to translate the  compound shape correctly.
+	// Not sure what. 
+	// Ideally 
+	std::stringstream ps;
+	ps << "%getBoundingCenterPostScript\n";
+	ps << getBoundingBox()._center._x << " " << getBoundingBox()._center._y << " translate\n";
 
 	return ps.str();
 }

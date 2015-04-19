@@ -56,6 +56,8 @@ std::string Star::calculatePostScript()
 	ps << (int)(-getBoundingBox()._width/2) << " " << (int)((-getBoundingBox()._height/2)-_sideLength/2.6) << " rmoveto\n";
 	
 	ps << "currentpoint translate\n";
+	//currentpoint, which pushes the x and y coordinates of the current point on the stack. 
+	//The origin is moved to the end of the line segment we just added to our path.
 	ps << "4 {\n";
 	ps << _sideLength << " 0 lineto\n";
 	ps << "currentpoint translate\n"; // move origin

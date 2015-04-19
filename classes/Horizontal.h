@@ -18,12 +18,12 @@ public:
 	Horizontal (std::initializer_list<std::shared_ptr<Shape>> shapes):CompoundShape(shapes)
 	{
 		setBoundingBox(calculateBoundingBox());
-		setPostScript(getBoundingCenterPostScript());
-		setPostScript(getDrawBoundingBoxPostScript());
+		//setPostScript(getBoundingCenterPostScript());
+		//setPostScript(getDrawBoundingBoxPostScript());
 		setPostScript(calculatePostScript());
 	}
 
-	BoundingBox getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> & shapes);
+	BoundingBox getCompoundBoundingBox(std::vector<std::shared_ptr<Shape>> shapes);
 	std::string getBetweenShapePostScript(BoundingBox currentBoundingBox, BoundingBox previousBoundingBox);
 };
 
