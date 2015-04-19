@@ -22,6 +22,7 @@ using std::string;
 
 #include <sstream>
 using std::stringstream;
+using std::fstream;
 using std::ifstream;
 using std::ofstream;
 
@@ -57,7 +58,7 @@ void writePostScriptToFile(Shape *shape, string fileName)
 
 TEST_CASE("Implement C++ to PostScript.", "CPS")
 {
-	Shape::flipDrawBoundingBox(); // turns on drawing of bounding boxes
+	//Shape::flipDrawBoundingBox(); // turns on drawing of bounding boxes
 
 	Polygon polygon1(9, 72); // 9 sides, each side is 72 in length
 	Triangle triangle1(72);
